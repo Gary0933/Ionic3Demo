@@ -19,13 +19,14 @@ npm-debug.log*
 
 /.idea
 /.ionic
-/.sass-cache
+.sass-cache/
 /.sourcemaps
 /.versions
 /.vscode
 /coverage
 /dist
-/node_modules
-/platforms
+node_modules/
+platforms/
 /plugins
 /www
+.git/
