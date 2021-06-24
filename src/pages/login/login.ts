@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
-
+import { BiometricProvider } from '../../providers/biometric/biometric';
 import { User } from '../../providers';
 import { MainPage } from '../';
 
@@ -25,7 +25,9 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public biometricProvider: BiometricProvider
+  ) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -46,5 +48,14 @@ export class LoginPage {
       });
       toast.present();
     });
+  }
+
+  test() {
+    this.biometricProvider.checkBiometricEnable()
+    .then((res) => {
+      if (res === true) {
+        return this.biometricProvider.validateByBiometric();
+      }
+    })
   }
 }
