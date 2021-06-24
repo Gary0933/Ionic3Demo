@@ -50,11 +50,18 @@ export class LoginPage {
     });
   }
 
-  test() {
-    this.biometricProvider.checkBiometricEnable()
+  biometricLogin() {
+    this.biometricProvider.checkBiometricEnable() // check if device support biometric
     .then((res) => {
       if (res === true) {
         return this.biometricProvider.validateByBiometric();
+      } else {
+        return Promise.resolve(false);
+      }
+    })
+    .then((res) => {
+      if (res === true) {
+        this.navCtrl.push(MainPage);
       }
     })
   }

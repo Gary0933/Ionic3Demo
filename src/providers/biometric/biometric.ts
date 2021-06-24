@@ -53,13 +53,13 @@ export class BiometricProvider {
       .show(obj)
       .then((res) => {
         if (res == "Success") {
-          return Promise.resolve(true);;
+          return Promise.resolve(true);
         } else {
-          return Promise.resolve(false);;
+          return Promise.resolve(false);
         }
       })
       .catch((error) => {
-        alert("Validate Biometric Failed : " + error);
+        console.log("Validate Biometric Failed : " + error);
         return Promise.resolve(false);
       });
   }
