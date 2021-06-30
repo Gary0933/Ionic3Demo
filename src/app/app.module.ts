@@ -13,6 +13,10 @@ import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { BiometricProvider } from '../providers/biometric/biometric';
+import { SqliteMockFactory } from '../mocks/sqlite.mock.factory';
+import { SQLite } from '@ionic-native/sqlite';
+import { DatabaseProvider } from '../providers/database/database.provider';
+import { CommonProvider } from '../providers/common/common.provider';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -64,10 +68,13 @@ export function provideSettings(storage: Storage) {
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
+    { provide: SQLite, useFactory: SqliteMockFactory },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FingerprintAIO,
-    BiometricProvider
+    BiometricProvider,
+    DatabaseProvider,
+    CommonProvider
   ]
 })
 export class AppModule { }
